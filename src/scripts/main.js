@@ -8,7 +8,17 @@ inputs.forEach((input) => {
   const label = document.createElement('label');
 
   label.className = 'field-label';
-  label.setAttribute('for', input.id);
+
+  if (input.id) {
+    label.setAttribute('for', input.id);
+  } else {
+    input.id = `input-${Math.random().toString(16)}`;
+    label.setAttribute('for', input.id);
+  }
+
+  if (!input.hasAttribute('name') || !input.getAttribute('name')) {
+    alert('Error. Input name in <input> is missing.');
+  }
 
   const inputName = input.getAttribute('name');
   let labelText = '';
